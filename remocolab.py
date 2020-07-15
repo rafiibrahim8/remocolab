@@ -63,9 +63,9 @@ def _setupSSHDImpl(ngrok_token, ngrok_region):
                   ["ssh-keygen", "-A"],
                   check = True)
 
-  #Prevent ssh session disconnection.
+  #Prevent ssh session disconnection. And Allow root login
   with open("/etc/ssh/sshd_config", "a") as f:
-    f.write("\n\nClientAliveInterval 120\n")
+    f.write("\nPermitRootLogin yes\nClientAliveInterval 120\n")
 
   msg = ""
   msg += "ECDSA key fingerprint of host:\n"
