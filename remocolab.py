@@ -121,16 +121,18 @@ def _setupSSHDImpl(ngrok_token, ngrok_region):
   msg += "✂️"*24 + "\n"
   return msg
 
-def _setupSSHDMain(ngrok_region, check_gpu_available):
+def _setupSSHDMain(ngrok_region, check_gpu_available, ngrok_token):
   if check_gpu_available and not _check_gpu_available():
     return (False, "")
-
+  
   print("---")
-  print("Copy&paste your tunnel authtoken from https://dashboard.ngrok.com/auth")
-  print("(You need to sign up for ngrok and login,)")
-  #Set your ngrok Authtoken.
-  ngrok_token = getpass.getpass()
-
+  
+  if(not ngrok_token):
+    #Set your ngrok Authtoken.
+    print("Copy&paste your tunnel authtoken from https://dashboard.ngrok.com/auth")
+    print("(You need to sign up for ngrok and login,)")
+    ngrok_token = getpass.getpass()
+  
   if not ngrok_region:
     print("Select your ngrok region:")
     print("us - United States (Ohio)")
@@ -144,8 +146,8 @@ def _setupSSHDMain(ngrok_region, check_gpu_available):
 
   return (True, _setupSSHDImpl(ngrok_token, ngrok_region))
 
-def setupSSHD(ngrok_region = None, check_gpu_available = False):
-  s, msg = _setupSSHDMain(ngrok_region, check_gpu_available)
+def setupSSHD(ngrok_region = None, check_gpu_available = False, ngrok_token = None):
+  s, msg = _setupSSHDMain(ngrok_region, check_gpu_available, ngrok_token)
   print(msg)
 
 def _setup_nvidia_gl():
@@ -271,8 +273,8 @@ subprocess.run(
                     universal_newlines = True)
   return r.stdout
 
-def setupVNC(ngrok_region = None, check_gpu_available = True):
-  stat, msg = _setupSSHDMain(ngrok_region, check_gpu_available)
+def setupVNC(ngrok_region = None, check_gpu_available = True, ngrok_token = None):
+  stat, msg = _setupSSHDMain(ngrok_region, check_gpu_available, ngrok_token)
   if stat:
     msg += _setupVNC()
 
