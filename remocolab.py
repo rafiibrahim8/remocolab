@@ -78,7 +78,7 @@ def _setupSSHDImpl(ngrok_token, ngrok_region):
 
   _download("https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip", "ngrok.zip")
   shutil.unpack_archive("ngrok.zip")
-  pathlib.Path("ngrok").chmod(stat.S_IXUSR)
+  pathlib.Path("ngrok").chmod(0o111)
 
   root_password = secrets.token_urlsafe()
   user_password = secrets.token_urlsafe()
