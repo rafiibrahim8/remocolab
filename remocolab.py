@@ -208,18 +208,18 @@ def _setup_nvidia_gl():
   subprocess.Popen(["Xorg", "-seat", "seat-1", "-allowMouseOpenFail", "-novtswitch", "-nolisten", "tcp"])
 
 def _setupVNC():
-  libjpeg_ver = "2.0.4"
-  virtualGL_ver = "2.6.3"
+  libjpeg_ver = "2.0.5"
+  virtualGL_ver = "2.6.4"
   turboVNC_ver = "2.2.5"
 
-  # libjpeg_url = "https://astuteinternet.dl.sourceforge.net/project/libjpeg-turbo/{0}/libjpeg-turbo-official_{0}_amd64.deb".format(libjpeg_ver)
-  # virtualGL_url = "https://astuteinternet.dl.sourceforge.net/project/virtualgl/{0}/virtualgl_{0}_amd64.deb".format(virtualGL_ver)
-  # turboVNC_url = "https://astuteinternet.dl.sourceforge.net/project/turbovnc/{0}/turbovnc_{0}_amd64.deb".format(turboVNC_ver)
+  libjpeg_url = "https://netix.dl.sourceforge.net/project/libjpeg-turbo/{0}/libjpeg-turbo-official_{0}_amd64.deb".format(libjpeg_ver)
+  virtualGL_url = "https://netix.dl.sourceforge.net/project/virtualgl/{0}/virtualgl_{0}_amd64.deb".format(virtualGL_ver)
+  turboVNC_url = "https://netix.dl.sourceforge.net/project/turbovnc/{0}/turbovnc_{0}_amd64.deb".format(turboVNC_ver)
 
-  #August 8,2020 cert failed
-  libjpeg_url="https://www.dropbox.com/s/dl/4ea8jdci5vfnmi6/libjpeg-turbo-official_2.0.4_amd64.deb"
-  virtualGL_url="https://www.dropbox.com/s/dl/h9b2moyf95i09d7/virtualgl_2.6.3_amd64.deb"
-  turboVNC_url="https://www.dropbox.com/s/dl/1yvrdlilbxl0djd/turbovnc_2.2.5_amd64.deb"
+  #Backup URL
+  #libjpeg_url="https://www.dropbox.com/s/dl/4ea8jdci5vfnmi6/libjpeg-turbo-official_2.0.4_amd64.deb"
+  #virtualGL_url="https://www.dropbox.com/s/dl/h9b2moyf95i09d7/virtualgl_2.6.3_amd64.deb"
+  #turboVNC_url="https://www.dropbox.com/s/dl/1yvrdlilbxl0djd/turbovnc_2.2.5_amd64.deb"
 
   _download(libjpeg_url, "libjpeg-turbo.deb")
   _download(virtualGL_url, "virtualgl.deb")
